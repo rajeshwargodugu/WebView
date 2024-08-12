@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
         progressBar = findViewById(R.id.progressBar)
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         setupWebView()
         setupObservers()
@@ -110,14 +110,11 @@ class MainActivity : AppCompatActivity() {
          * Only load content from trusted URLs and domains.
          * Avoid loading untrusted content to mitigate the risk of content injection attacks.
          */
-        override fun shouldOverrideUrlLoading(
-            view: WebView?,
-            request: WebResourceRequest?
-        ): Boolean {
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
             val url = request?.url.toString()
             return when {
+                // Use domain url
                 url.startsWith("https://") -> {
-                    // Allow the WebView to load the URL
                     false
                 }
 
@@ -150,7 +147,7 @@ class MainActivity : AppCompatActivity() {
             error: SslError?
         ) {
             // Show an error dialog or handle the error appropriately
-            handler.cancel() // Default behavior
+            handler.cancel()
         }
 
         override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {

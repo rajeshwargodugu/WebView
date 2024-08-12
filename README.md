@@ -31,40 +31,39 @@ This project is a sample Android application that demonstrates how to use `WebVi
 
 - ### Implementation Details
   - **WebViewClient**
-    - Purpose: To handle web page events such as URL loading, page start, page finish, and errors.
-        - **Best Practices**:
-          - **1. Restrict Loading Content**
-            - Override shouldOverrideUrlLoading to handle or block certain URLs.
+  - Purpose: To handle web page events such as URL loading, page start, page finish, and errors.
+  - **Best Practices**:
+    - **Restrict Loading Content**
+      - Override shouldOverrideUrlLoading to handle or block certain URLs.
             
-          - **2. Enable HTTPS**
-            - Always use HTTPS to ensure data is encrypted between the client and server. T
-            - his prevents interception and tampering of data.
+    - **Enable HTTPS**
+      - Always use HTTPS to ensure data is encrypted between the client and server. T
+      - his prevents interception and tampering of data.
             
-          - **3. Disable JavaScript if Not Needed**
-            - Only enable JavaScript if your web content requires it.
-            - JavaScript can be a vector for cross-site scripting (XSS) attacks.
+    - **Disable JavaScript if Not Needed**
+      - Only enable JavaScript if your web content requires it.
+      - JavaScript can be a vector for cross-site scripting (XSS) attacks.
             
-          - **4. Use Content Security Policy**
-            - CSP helps prevent XSS attacks by specifying allowed sources for content. 
+    - **Use Content Security Policy**
+      - CSP helps prevent XSS attacks by specifying allowed sources for content. 
             
-          - **5. Handle File Access Carefully**
-            - Disabling file access prevents your app from accessing local files via WebView.
+    - **Handle File Access Carefully**
+      - Disabling file access prevents your app from accessing local files via WebView.
             
-          - **6. Prevent Unintended Navigation**
-            - Ensure that URLs opened in WebView do not trigger unintended intents. 
-            - For example, block URL schemes like mailto: or tel: unless necessary. 
+    - **Prevent Unintended Navigation**
+      - Ensure that URLs opened in WebView do not trigger unintended intents. 
+      - For example, block URL schemes like mailto: or tel: unless necessary. 
         
-          - **7.  Enable Mixed Content Mode Carefully**
-            - If your application needs to load both HTTP and HTTPS content, enable mixed content mode carefully.
+    - **Enable Mixed Content Mode Carefully**
+      - If your application needs to load both HTTP and HTTPS content, enable mixed content mode carefully.
           
-          - **8. Limit Access to WebView APIs**
-            - Careful when enabling WebView APIs and features. For example, disable geolocation if not needed.
-          - **Other**
-            - Override onPageStarted and onPageFinished to manage loading indicators.
-            - Handle errors gracefully with onReceivedError.
+    - **Limit Access to WebView APIs**
+      - Careful when enabling WebView APIs and features. For example, disable geolocation if not needed.
+      
+    - **Other**
+      - Override onPageStarted and onPageFinished to manage loading indicators.
+      - Handle errors gracefully with onReceivedError.
     
-
-
     
 - **Security**: Use secure URL schemes and handle mixed content carefully.
 
